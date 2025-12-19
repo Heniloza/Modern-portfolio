@@ -1,6 +1,7 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "motion/react";
+import { createSparkles } from "../utils/sparkels.js";
 
 const Hero = () => {
   return (
@@ -75,15 +76,19 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
           >
             <button
-              onClick={() =>
+              onClick={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                createSparkles(rect.left + rect.width / 2, rect.top);
+
                 document
                   .getElementById("projects")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
               className="bg-[#22c55e] text-black px-6 py-3 rounded-full font-medium hover:scale-105 transition"
             >
               View Projects
             </button>
+
 
             <button
               onClick={() =>
